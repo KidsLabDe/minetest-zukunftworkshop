@@ -1,4 +1,8 @@
 LUA_SER v=2
+Sinfluence_points:T
+E
+Snpr_rails:T
+E
 Stcbs:T
 E
 Sts:T
@@ -12,10 +16,6 @@ Slck:T
 E
 Sts:T
 E
-E
-Sinfluence_points:T
-E
-Snpr_rails:T
 E
 E
 END_SER
