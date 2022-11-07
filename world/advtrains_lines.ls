@@ -3,8 +3,8 @@ Sscheduler_queue:T
 E
 Sstations:T
 E
-Srwt_time:N55056
 Sstops:T
 E
+Srwt_time:N264352
 E
 END_SER
