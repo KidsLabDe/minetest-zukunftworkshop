@@ -49,6 +49,13 @@ Das Passwort entspricht dem Mentoren-Passwort auf dem Server-Laptop.
 max_simultaneous_block_sends_per_client = 160
 ```
 
-Test mit 40 gleichzeitigen Clients erfolgreich.
+Test mit 40 gleichzeitigen Clients erfolgreich:
 
+<img width="882" alt="AP1 - Interface WLANUplink at admin@192 168 88 1 - Webfig v6 47 10 (long-term) on hAP ac^3 (arm) 2022-11-30 15-26-49" src="https://user-images.githubusercontent.com/4609107/204824733-5b0018bf-634c-435a-a97f-b025fe96f29c.png">
 
+## Tipps und Tricks
+
+- Wenn ein Client sich nicht sofort verbindet und bei "Medien..." hängenbleibt, schließen und neu verbinden
+- Netzwerkverbingung testen - ping auf Server zeigt grob die zuverlässigkeit!
+- Wenn man mit 3 AP arbeitet, verbindung zwischen den AP sicherstellen (siehe WirelessUpLink Signal) - alternativ mit Ethernet Kabeln aus Koffer "Infrastruktur" direkt verbinden.
+- 
