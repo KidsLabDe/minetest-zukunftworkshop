@@ -59,3 +59,13 @@ Test mit 40 gleichzeitigen Clients erfolgreich:
 - Netzwerkverbingung testen - ping auf Server zeigt grob die zuverlässigkeit!
 - Wenn man mit 3 AP arbeitet, verbindung zwischen den AP sicherstellen (siehe WirelessUpLink Signal) - alternativ mit Ethernet Kabeln aus Koffer "Infrastruktur" direkt verbinden.
 - 
+
+
+## Geo-Daten Import mit World2Minetest
+
+- Im Verzeichnis "geoimport" liegen alle benötigten Skripte, um die GeoDaten aus OpenstreetMap zu importieren. [Details siehe Anleitung](https://github.com/FlorianRaediker/world2minetest).
+- Die Mod "world2minetest" muss installiert werden, d.h. das Verzeichnis "geoimport/world2minetest" muss komplett in das mod-Verzeichnis der Minetest-Installation kopiert werden. 
+- Beachtet dabei, dass die Datei "geoimport/world2minetest/map.dat" die importierten Geo-Daten enthält - diese muß also ggf. erneut kopiert werden, wenn ihr die Daten noch einmal importiert.
+- Um neu importierte Geodaten in die Welt zu bekommen, müsst ihr in Minetest eine neue Welt anlegen, die mod world2minetest aktivieren und dann die Welt starten. Diesen Vorgang müsst ihr nach jedem Import von Geodaten wiederholen. Manuelle Änderungen an eurer generierten Welt gehen dabei verloren und müssen ggf. gesichert und wieder hergestellt werden.
+
+
