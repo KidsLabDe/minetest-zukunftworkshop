@@ -76,6 +76,7 @@ Test mit 40 gleichzeitigen Clients erfolgreich:
   - Im Projektordner liegen jetzt alle erforderlichen Dateien:
 
     <img width="611" alt="Screenshot 2023-01-12 at 11 06 00" src="https://user-images.githubusercontent.com/19528321/212038098-8d46212e-cf3a-4728-af68-8bc1a799a4e5.png">
+    
     - `query.osm` - die Anfrage an Openstreetmap mit euren Koordinaten
     - `osm.json` - die von Openstreetmap geladenen Rohdaten
     - `features_osm.json` - extrahierten Geodaten, die in der generierten Welt dargestellt werden
@@ -84,6 +85,7 @@ Test mit 40 gleichzeitigen Clients erfolgreich:
   - Im Homeverzeichnis von Minetest die mod und world Dateien (Voraussetzung dafür ist, dass ihr die Umgebungsvariable `MINETEST_GAME_PATH` so definiert habt, dass sie auf das Homeverzeichnis eurer Minetest Installation zeigt):
 
     <img width="510" alt="Screenshot 2023-01-12 at 11 18 09" src="https://user-images.githubusercontent.com/19528321/212043634-fc81c5cd-c533-4127-ab99-1c8e80164e16.png">
+
     - `mods/init.lua` - Startscript für die World2Minetest Mod, das aus den Geodaten die Welt "baut"
     - `mods/map.dat` - Enthält die aus den o.g. Features generierten Voxel (Blöcke)
     - `worlds/<projectname>/world.mt` - Konfiguration der Welt für Minetest
