@@ -99,7 +99,7 @@ res_waterways = []
 
 def get_surface(area):
     tags = area["tags"]
-    print_element("processing area:", area)
+    # print_element("processing area:", area)
     surface = None
     res_area = None
 
