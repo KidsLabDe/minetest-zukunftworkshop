@@ -132,7 +132,9 @@ Test mit 40 gleichzeitigen Clients erfolgreich:
   - Mit der Option `-q` oder `--query` könnt ihr eine eigene Anfragedatei angeben. Lasst dann die Optionen `-r` sowie `-a` oder `--area` weg.
   - Wenn ihr die Anfragedatei, die schon im Projektordner liegt benutzen wollt, gebt die Option `-r` oder `--reuse_query` an.
 
+### python Module
 
+`pip install pyproj numpy scikit-image tqdm matplotlib`
 
 # Ablauf
 
