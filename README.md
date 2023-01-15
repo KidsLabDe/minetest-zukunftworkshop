@@ -22,11 +22,35 @@ Nach dem Start ist der Server unter folgender IP / Port erreichbar:
 
 `192.168.88.254:30000`
 
-n
+
 
 
 
 ## Minetest Docker
+
+### Main-Config
+
+in main-config/minetest.conf:
+
+```
+default_password = blz
+default_privs = interact, student, fly, shout, fast, home
+basic_privs = interact, student, fly, shout, fast, home
+static_spawnpoint = 180 9 1584 # Setzen pro Welt
+time_speed = 72 # 0 - Zeit bleibt stehen
+name = Gregor # OP des servers
+```
+
+### World.mt
+
+Config-Datei im World Ordner
+
+```
+backend = leveldb # vs. SQLite - kleinere Datenbank und performanter, u.u. nicht auf allen Plattformen verfügbar (macOS)
+gameid = antigrief # minetest ohne Lava & TNT
+world_name = zukunftsnacht # siehe docker-compose.yaml -worldname - das wird gesucht, nicht der Verzeichnisname
+server_announce = false # server soll nicht extern veröffentlicht werden
+```
 
 ### Worldname
 
@@ -69,3 +93,18 @@ Test mit 40 gleichzeitigen Clients erfolgreich:
 - Um neu importierte Geodaten in die Welt zu bekommen, müsst ihr in Minetest eine neue Welt anlegen, die mod world2minetest aktivieren und dann die Welt starten. Diesen Vorgang müsst ihr nach jedem Import von Geodaten wiederholen. Manuelle Änderungen an eurer generierten Welt gehen dabei verloren und müssen ggf. gesichert und wieder hergestellt werden.
 
 
+# Ablauf 
+
+
+## Am Morgen
+
+### Preisverleihung
+
+- Gruppenphoto mit allen inkl. Lehrern
+
+### Zettel: wie gehts weiter?
+
+- Zugangsdaten Server
+  - Hochladen der Welt direkt
+- QR Code für WhatsApp Gruppe oder Insta?
+- 
