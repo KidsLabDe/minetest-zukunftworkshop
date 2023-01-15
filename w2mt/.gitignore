@@ -1,0 +1,8 @@
+w2mt.log
+
+/data_sources/
+/data_sources/**
+/parsed_data/**
+
+**/features_osm.json
+**/osm.json

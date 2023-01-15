@@ -14,7 +14,7 @@ Auf dem Server-Laptop ist alles nötige installiert, um den MineTest-Server loka
 
 ```shell
 cd /opt/minetest/ (pfad noch anpassen)
-docker-compose up 
+docker-compose up
 
 ```
 
@@ -57,10 +57,10 @@ server_announce = false # server soll nicht extern veröffentlicht werden
 - Ist in der world.mt NICHT der Verzeichnisname
 - GameID - "nongrief"
 
-## WLAN 
+## WLAN
 - [ ] Es gibt 3 WLAN Router. Diese erstellen für die Zukunftsnacht ein lokales WLAN speziell für MineTest.
 - [ ] Warum haben wir uns entschieden ein eigenes WLAN aufzubauen? Auf der einen Seite haben nicht alle Schulen ein WLAN - auch die Internetverbindung ist nicht immer zuverlässig. Hauptgrund ist aber die ablenkungsfreie Umgebung: der Computer ist nur für die Zukunftsnacht - es gibt kein Internet, kein YouTube...
-### Zugangsdaten 
+### Zugangsdaten
 - [ ] Die 3 Router sind jeweils mit folgenden IPs erreichbar:
 - [ ] - 192.168.88.1 - Haupt-Router
   - 192.168.88.2 / .3 - Client-Router
@@ -82,18 +82,59 @@ Test mit 40 gleichzeitigen Clients erfolgreich:
 - Wenn ein Client sich nicht sofort verbindet und bei "Medien..." hängenbleibt, schließen und neu verbinden
 - Netzwerkverbingung testen - ping auf Server zeigt grob die zuverlässigkeit!
 - Wenn man mit 3 AP arbeitet, verbindung zwischen den AP sicherstellen (siehe WirelessUpLink Signal) - alternativ mit Ethernet Kabeln aus Koffer "Infrastruktur" direkt verbinden.
-- 
+-
 
 
-## Geo-Daten Import mit World2Minetest
+## Import von Geo-Daten mit World2Minetest
 
-- Im Verzeichnis "geoimport" liegen alle benötigten Skripte, um die GeoDaten aus OpenstreetMap zu importieren. [Details siehe Anleitung](https://github.com/FlorianRaediker/world2minetest).
-- Die Mod "world2minetest" muss installiert werden, d.h. das Verzeichnis "geoimport/world2minetest" muss komplett in das mod-Verzeichnis der Minetest-Installation kopiert werden. 
-- Beachtet dabei, dass die Datei "geoimport/world2minetest/map.dat" die importierten Geo-Daten enthält - diese muß also ggf. erneut kopiert werden, wenn ihr die Daten noch einmal importiert.
-- Um neu importierte Geodaten in die Welt zu bekommen, müsst ihr in Minetest eine neue Welt anlegen, die mod world2minetest aktivieren und dann die Welt starten. Diesen Vorgang müsst ihr nach jedem Import von Geodaten wiederholen. Manuelle Änderungen an eurer generierten Welt gehen dabei verloren und müssen ggf. gesichert und wieder hergestellt werden.
+- Im Verzeichnis "w2mt" liegen alle benötigten Skripte, um die GeoDaten aus OpenstreetMap zu importieren. [Details siehe Anleitung](https://github.com/FlorianRaediker/world2minetest).
+- Wir nutzen aktuell nur die Daten von Openstreetmap und verzichten auf eine Heightmap und Daten von 3D-Modellen.
+- Der Ablauf ist grundsätzlich so:
+  - Ihr überlegt welchen Bereich der Welt ihr importieren wollt und besorgt euch die Koordinaten von zwei gegenüberliegenden Eckpunkten des Bereichs im Dezimalformat. Das geht zum Beispiel gut auf Google Maps:
+	<img width="180" alt="Screenshot 2023-01-11 at 21 27 12" src="https://user-images.githubusercontent.com/19528321/211914444-0cc8ea56-f660-4c50-9e37-18ee4a9ad8bc.png">
 
 
-# Ablauf 
+  - Ihr wechselt in das Verzeichnis `w2mt` und ruft das script w2mt.py mit dem Projektnamen und den Koordinaten wie folgt auf:
+
+    `python3 w2mt.py -p museumsinsel_berlin -a '52.52337529920812, 13.392572107274946, 52.51061362911302, 13.41347200727846'`
+  - Im Projektordner liegen jetzt alle erforderlichen Dateien:
+
+    <img width="611" alt="Screenshot 2023-01-12 at 11 06 00" src="https://user-images.githubusercontent.com/19528321/212038098-8d46212e-cf3a-4728-af68-8bc1a799a4e5.png">
+
+    - `query.osm` - die Anfrage an Openstreetmap mit euren Koordinaten
+    - `osm.json` - die von Openstreetmap geladenen Rohdaten
+    - `features_osm.json` - extrahierten Geodaten, die in der generierten Welt dargestellt werden
+
+
+  - Im Homeverzeichnis von Minetest die mod und world Dateien (Voraussetzung dafür ist, dass ihr die Umgebungsvariable `MINETEST_GAME_PATH` so definiert habt, dass sie auf das Homeverzeichnis eurer Minetest Installation zeigt):
+
+    <img width="510" alt="Screenshot 2023-01-12 at 11 18 09" src="https://user-images.githubusercontent.com/19528321/212043634-fc81c5cd-c533-4127-ab99-1c8e80164e16.png">
+
+    - `mods/init.lua` - Startscript für die World2Minetest Mod, das aus den Geodaten die Welt "baut"
+    - `mods/map.dat` - Enthält die aus den o.g. Features generierten Voxel (Blöcke)
+    - `worlds/<projectname>/world.mt` - Konfiguration der Welt für Minetest
+
+
+  - Startet minetest und ihr seht die neue Welt in der Liste:
+
+    <img width="829" alt="Screenshot 2023-01-12 at 11 01 04" src="https://user-images.githubusercontent.com/19528321/212037294-eaa4ec9b-ea21-41c5-be21-1d2105d2dfe8.png">
+
+
+
+  - Ihr könnt die neue Welt sofort starten, weil die Mod bereits aktiviert ist. Der Spawnpoint ist ca. in der Mitte der Welt.
+
+    <img width="1468" alt="Screenshot 2023-01-12 at 12 12 46" src="https://user-images.githubusercontent.com/19528321/212052200-b63fd50d-84ef-4b4c-9484-8f164b7d3d55.png">
+
+
+- Weitere Optionen und Infos dazu:
+  - In der Datei `w2mt.log` findet ihr ein ausführliches Log über die Importe, die ich durchgeführt habt inkl. Fehlermeldungen.
+  - Mit der Option `-v` oder `--verbose` könnt ihr die Log-Infos auch auf der Konsole angezeigt bekommen.
+  - Mit der Option `-q` oder `--query` könnt ihr eine eigene Anfragedatei angeben. Lasst dann die Optionen `-r` sowie `-a` oder `--area` weg.
+  - Wenn ihr die Anfragedatei, die schon im Projektordner liegt benutzen wollt, gebt die Option `-r` oder `--reuse_query` an.
+
+
+
+# Ablauf
 
 
 ## Am Morgen
@@ -107,4 +148,3 @@ Test mit 40 gleichzeitigen Clients erfolgreich:
 - Zugangsdaten Server
   - Hochladen der Welt direkt
 - QR Code für WhatsApp Gruppe oder Insta?
-- 
